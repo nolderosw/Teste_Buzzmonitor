@@ -1,0 +1,42 @@
+  <div class="row" ng-controller="TodoCtrl">
+    <div class="col-md-6"> <!-- Definição da div que contem as tarefas pendentes -->
+      <div class="todolist not-done">
+        <h1>Tarefas Pendentes</h1>
+          <form ng-submit="add_tarefa_pendente()"> <!-- Form responsável pela inserção de um elemento na lista de tarefas pendentes -->
+            <div class="col-md-10">
+            <input ng-required="true" ng-model="tarefa.descricao" type="text" class="form-control" placeholder="Escreva a tarefa">
+            </div>
+              <button type="submit" class="btn btn-primary pull-right">Adicionar</button>
+          </form>
+        <br>
+        <br>
+        <hr>
+        <ul class="list-unstyled"> <!-- Lista das tarefas pendentes -->
+          <li class="ui-state-default" ng-repeat="tarefa in tarefas_pendentes"> <!-- Loop para percorrer e listar tarefas pendentes -->
+            <div class="checkbox">
+              <span>{{tarefa.descricao}}</span>
+              <button ng-click="delete_tarefa_pendente($index)" class="btn btn-sm btn-danger btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+              <button ng-click="add_tarefa_conclusa($index)"  style="margin-right: 1%;" class="btn btn-sm btn-success btn-xs pull-right"><span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+          </li>
+        </ul>
+        <div class="todo-footer"> <!-- Footer para mostrar quantas tarefas pendentes restam do total de tarefas -->
+          <strong><span class="count-todos">{{tarefas_pendentes.length}}</span></strong> de <strong><span class="count-todos"> {{tarefas_conclusas.length+tarefas_pendentes.length}}</span></strong> Tarefas Pendentes
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"> <!-- Definição da div que contem as tarefas conclusas -->
+      <div class="todolist">
+        <h1>Tarefas Conclusas</h1>
+        <ul id="done-items" class="list-unstyled" ng-repeat="tarefa in tarefas_conclusas"> <!-- Loop para percorrer e listar as tarefas conclusas -->
+          <li>{{tarefa.descricao}}
+            <button ng-click="delete_tarefa_conclusa($index)" class="btn btn-sm btn-danger btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+            <button ng-click="return_tarefa_pendente($index)" style="margin-right: 1%;" class="btn btn-sm btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-chevron-left"></span></button>
+          </li>
+        </ul>
+      </div>
+      <div class="todo-footer2"> <!-- Footer para mostrar quantas tarefas foram conclusas do total de tarefas -->
+        <strong><span class="count-todos">{{tarefas_conclusas.length}}</span></strong> de <strong><span class="count-todos">{{tarefas_conclusas.length+tarefas_pendentes.length}}</span></strong>  Tarefas Conclusas
+      </div>
+    </div>
+  </div>
