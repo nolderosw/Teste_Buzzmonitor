@@ -16,6 +16,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery',  '~> 2.0.0'
   gem 'rails-assets-angular', '~> 1.4.0'
 end
+gem 'mysql2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use Puma as the app server
